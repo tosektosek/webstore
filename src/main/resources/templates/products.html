@@ -18,18 +18,18 @@
             </div>
         </div>
     </section>
-    <!--/*@thymesVar id="product" type="com.pakct.webstore.domain.Product"*/-->
+    <!--/*@thymesVar id="products" type="com.pakct.webstore.domain.Product"*/-->
     <section class="container">
         <div class="row">
-            <div class="col-sm-6 col-md-4 pb-5">
+            <div  th:each="product : ${products}" class="col-sm-6 col-md-4 pb-5">
                 <div class="card">
                     <div class="card-body">
-                        <!--/*@thymesVar id="product" type="com.pakct.webstore.domain.Product"*/-->
-                        <h3 class="card-header" th:text="${product.name}">ddddddddd</h3>
-                        <div class="card-text">
-                            <p th:text="${product.description}">dddddddddddd</p>
-                            <p th:text="${product.unitPrice}+ PLN">132</p>
-                            <p th:text="'Liczba sztuk w magazynie: '+${product.unitsInStock}">2213</p>
+                        <!--/*@thymesVar id="product" type="com.packt.webstore.domain.Product"*/-->
+                            <h3 class="card-header" th:text="${product.name}">ddddddddd</h3>
+                            <div class="card-text">
+                                <p th:text="${product.description}">dddddddddddd</p>
+                                <p th:text="${product.unitPrice}+ PLN">132</p>
+                                <p th:text="'Liczba sztuk w magazynie: '+${product.unitsInStock}">2213</p>
                         </div>
                     </div>
                 </div>
