@@ -44,4 +44,14 @@ public class InMemoryProductRepository implements ProductRepository {
     public List<Product> getAllProducts() {
         return listOfProducts;
     }
+
+    public Product getProductById(String productId) {
+
+        Product productById = listOfProducts.stream().filter(product -> product!=null && product.getProductId()!= null && product.getProductId().equals(productId)).findFirst().orElse(null);
+
+        if(productById == null) {
+            throw new IllegalArgumentException("Brak produktu o wskazanym id: " + productId);
+        }
+        return productById;
+    }
 }
