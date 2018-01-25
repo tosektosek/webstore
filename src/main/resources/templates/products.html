@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Produkty</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body>
+    <section>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Produkty</h1>
+                <p>Wszystkie produkty dostępne w naszym sklepie</p>
+            </div>
+        </div>
+    </section>
+    <!--/*@thymesVar id="product" type="com.pakct.webstore.domain.Product"*/-->
+    <section class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 pb-5">
+                <div class="card">
+                    <div class="card-body">
+                        <!--/*@thymesVar id="product" type="com.pakct.webstore.domain.Product"*/-->
+                        <h3 class="card-header" th:text="${product.name}">ddddddddd</h3>
+                        <div class="card-text">
+                            <p th:text="${product.description}">dddddddddddd</p>
+                            <p th:text="${product.unitPrice}+ PLN">132</p>
+                            <p th:text="'Liczba sztuk w magazynie: '+${product.unitsInStock}">2213</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</body>
+</html>
