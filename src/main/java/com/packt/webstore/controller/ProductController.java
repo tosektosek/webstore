@@ -1,13 +1,10 @@
 package com.packt.webstore.controller;
 
-import com.packt.webstore.domain.Product;
-import com.packt.webstore.domain.repository.ProductRepository;
+import com.packt.webstore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.math.BigDecimal;
 
 /**
  * @author Kamil
@@ -15,16 +12,16 @@ import java.math.BigDecimal;
 @Controller
 public class ProductController {
 
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     @Autowired
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @RequestMapping("/products")
     public String list(Model model) {
-        model.addAttribute("products", productRepository.getAllProducts());
+        model.addAttribute("products", productService.getAllProducts());
         return "products";
     }
 }
