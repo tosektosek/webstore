@@ -2,8 +2,6 @@ package com.packt.webstore.domain.repository;
 
 import com.packt.webstore.domain.Product;
 import org.springframework.stereotype.Repository;
-import sun.java2d.cmm.Profile;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,5 +51,11 @@ public class InMemoryProductRepository implements ProductRepository {
             throw new IllegalArgumentException("Brak produktu o wskazanym id: " + productId);
         }
         return productById;
+    }
+
+    public List<Product> getProductsByCategory(String category) {
+        List<Product> productsByCategory = new ArrayList<>();
+        listOfProducts.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).forEach(productsByCategory::add);
+        return productsByCategory;
     }
 }
