@@ -3,8 +3,7 @@ package com.packt.webstore.domain.repository;
 import com.packt.webstore.domain.Product;
 import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Kamil
@@ -57,5 +56,55 @@ public class InMemoryProductRepository implements ProductRepository {
         List<Product> productsByCategory = new ArrayList<>();
         listOfProducts.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).forEach(productsByCategory::add);
         return productsByCategory;
+    }
+
+    @Override
+    public Set<Product> getProductsByFilter(Map<String, List<String>> filterParams) {
+        Set<Product> productsByBrand = new HashSet<>();
+        Set<Product> productsByCategory = new HashSet<>();
+
+        Set<String> criterias = filterParams.keySet();
+
+        if(criterias.contains("brand")) {
+            for(String brandName : filterParams.get("brand")) {
+                for(Product product : listOfProducts) {
+                    if(brandName.equalsIgnoreCase(product.getManufacturer())) {
+                        productsByBrand.add(product);
+                    }
+                }
+            }
+        }
+
+        if(criterias.contains("category")) {
+            for(String category : filterParams.get("category")) {
+                productsByCategory.addAll(this.getProductsByCategory(category));
+            }
+        }
+        productsByCategory.retainAll(productsByBrand);
+        return productsByBrand;
+    }
+
+    @Override
+    public List<Product> getProductsByManufacturer(String manufacturer) {
+        List<Product> productsByManufacturer = new ArrayList<>();
+        listOfProducts.stream().filter(product -> product.getManufacturer().equalsIgnoreCase(manufacturer)).forEach(productsByManufacturer::add);
+        return productsByManufacturer;
+    }
+
+    @Override
+    public List<Product> getProductsByPriceFilter(Map<String, String> price) {
+        List<Product> productsByPrice = new ArrayList<>();
+
+        Integer low = Integer.parseInt(price.get("low"));
+        Integer high = Integer.parseInt(price.get("high"));
+
+        listOfProducts.stream()
+                .filter(product ->
+                        product.getUnitPrice().compareTo(new BigDecimal(low)) >= 0)
+                .filter(product ->
+                        product.getUnitPrice().compareTo(new BigDecimal(high)) <=0)
+        .forEach(productsByPrice::add);
+
+        return productsByPrice;
     }
 }

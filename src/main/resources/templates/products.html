@@ -30,6 +30,12 @@
                                 <p th:text="${product.description}">dddddddddddd</p>
                                 <p th:text="${product.unitPrice}+ PLN">132</p>
                                 <p th:text="'Liczba sztuk w magazynie: '+${product.unitsInStock}">2213</p>
+                                <p>
+                                    <a th:href="@{/products/product(id=${product.productId})}"
+                                       class="btn btn-primary">
+                                        <i class="fa fa-info"></i> Szczegóły
+                                    </a>
+                                </p>
                         </div>
                     </div>
                 </div>
