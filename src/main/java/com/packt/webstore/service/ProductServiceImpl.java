@@ -5,8 +5,10 @@ import com.packt.webstore.domain.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Stream;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Kamil
@@ -50,15 +52,6 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.getProductsByPriceFilter(price);
     }
 
-    @Override
-    public Set<Product> getProductsByFilter(Set<Product> toFiltr, List<Product> productsByCategory, List<Product> productsByPrice, List<Product> productsByManufacturer) {
-        Set<Product> result = new HashSet<>();
-        toFiltr.stream().filter(product -> productsByCategory.contains(product))
-                .filter(product -> productsByManufacturer.contains(product))
-                .filter(product -> productsByPrice.contains(product))
-                .forEach(result::add);
-        return result;
-    }
     public Set<Product> getProductsByFilter(Set<Product> toFiltr, List<Product>... products){
         Set<Product> result = new HashSet<>();
         int counter = products.length - 1;

@@ -22,7 +22,7 @@ import java.util.Set;
 @RequestMapping("/products")
 public class ProductController {
 
-    private static final String products = "products";
+    private static final String PRODUCTS = "products";
 
     private ProductService productService;
 
@@ -31,30 +31,24 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping()
-    public String list(Model model) {
-        model.addAttribute(products, productService.getAllProducts());
-        return products;
-    }
-
-    @RequestMapping("/all")
+    @RequestMapping({"/","/all"})
     public String allProducts(Model model) {
-        model.addAttribute(products, productService.getAllProducts());
-        return products;
+        model.addAttribute(PRODUCTS, productService.getAllProducts());
+        return PRODUCTS;
     }
 
     @RequestMapping("/{category}")
     public String getProductsByCategory(Model model, @PathVariable("category") String category) {
-        model.addAttribute(products, productService.getProductsByCategory(category));
-        return products;
+        model.addAttribute(PRODUCTS, productService.getProductsByCategory(category));
+        return PRODUCTS;
     }
 
     @RequestMapping("/filter/{ByCriteria}")
     public String getProductsByFilter(
             @MatrixVariable(pathVar = "ByCriteria")Map<String, List<String>> filterParams,
             Model model) {
-        model.addAttribute("products", productService.getProductsByFilter(filterParams));
-        return products;
+        model.addAttribute(PRODUCTS, productService.getProductsByFilter(filterParams));
+        return PRODUCTS;
     }
 
     @RequestMapping("/product")
@@ -78,8 +72,8 @@ public class ProductController {
         productsSet.addAll(productsByPrice);
         productsSet.addAll(productsByManufacturer);
 
-        model.addAttribute("products", productService.getProductsByFilter(productsSet,productsByCategory,productsByPrice,productsByManufacturer));
-        return products;
+        model.addAttribute(PRODUCTS, productService.getProductsByFilter(productsSet,productsByCategory,productsByPrice,productsByManufacturer));
+        return PRODUCTS;
     }
 
 }

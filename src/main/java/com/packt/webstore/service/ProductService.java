@@ -13,6 +13,5 @@ public interface ProductService {
     Set<Product> getProductsByFilter(Map<String, List<String>> filterParams);
     List<Product> getProductsByManufacturer(String manufacturer);
     List<Product> getProductsByPriceFilter(Map<String, String> price);
-    Set<Product> getProductsByFilter(Set<Product> toFiltr, List<Product> productsByCategory
-            , List<Product>productsByPrice,List<Product>productsByManufacturer);
+    Set<Product> getProductsByFilter(Set<Product> toFiltr, List<Product>... products);
 }

@@ -21,21 +21,21 @@ public class InMemoryProductRepository implements ProductRepository {
         iphone.setManufacturer("Apple");
         iphone.setUnitsInStock(1000);
 
-        Product laptop_dell = new Product("P1235", "Dell Inspiron", new BigDecimal(700));
-        laptop_dell.setDescription("Dell Inspiron, 14-calowy laptop (czarny) z procesorem Intel Core 7. generacji");
-        laptop_dell.setCategory("Laptop");
-        laptop_dell.setManufacturer("Dell");
-        laptop_dell.setUnitsInStock(1000);
+        Product laptopDell = new Product("P1235", "Dell Inspiron", new BigDecimal(700));
+        laptopDell.setDescription("Dell Inspiron, 14-calowy laptop (czarny) z procesorem Intel Core 7. generacji");
+        laptopDell.setCategory("Laptop");
+        laptopDell.setManufacturer("Dell");
+        laptopDell.setUnitsInStock(1000);
 
-        Product tablet_Nexus = new Product("P1236", "Nexus 7", new BigDecimal(300));
-        tablet_Nexus.setDescription("Google Nexus 7 jest najlżejszym 7-caolwym tabletem z 4-rdzeniowym procesorem Qualcomm Snapdragon® S4 Pro");
-        tablet_Nexus.setCategory("Tablet");
-        tablet_Nexus.setManufacturer("Google");
-        tablet_Nexus.setUnitsInStock(1000);
+        Product tabletNexus = new Product("P1236", "Nexus 7", new BigDecimal(300));
+        tabletNexus.setDescription("Google Nexus 7 jest najlżejszym 7-caolwym tabletem z 4-rdzeniowym procesorem Qualcomm Snapdragon® S4 Pro");
+        tabletNexus.setCategory("Tablet");
+        tabletNexus.setManufacturer("Google");
+        tabletNexus.setUnitsInStock(1000);
 
         listOfProducts.add(iphone);
-        listOfProducts.add(laptop_dell);
-        listOfProducts.add(tablet_Nexus);
+        listOfProducts.add(laptopDell);
+        listOfProducts.add(tabletNexus);
 
     }
     public List<Product> getAllProducts() {
